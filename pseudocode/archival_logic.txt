@@ -1,0 +1,20 @@
+    Pseudocode: Archive Records Older Than 3 Months
+
+1. Connect to Cosmos DB using Azure SDK
+2. Query all records older than 90 days:
+   - SELECT * FROM billing WHERE timestamp < current_date - 90 days
+
+3. For each record:
+   a. Create a path in Azure Blob Storage like:
+      customer_id/year/month/record_id.json
+   b. Serialize the record to JSON
+   c. Upload to Azure Blob (Cool tier)
+
+4. After successful upload:
+   - Delete record from Cosmos DB
+
+5. Log archival metadata (record ID, date, blob path)
+
+6. Schedule this job weekly via:
+   - Azure Data Factory Pipeline OR
+   - Timer Triggered Azure Function
