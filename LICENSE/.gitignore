@@ -1,0 +1,75 @@
+Great question, Nipun! A well-configured `.gitignore` helps **avoid committing sensitive, unnecessary, or system-specific files** into your GitHub repository.
+
+Here’s a `.gitignore` tailored for your **Azure Functions (Python/Node)** + **Terraform** project:
+
+---
+
+### ✅ Recommended `.gitignore` for This Project
+
+```gitignore
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+.venv/
+venv/
+*.env
+
+# Node.js (if you use JS for Azure Function)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+crash.log
+override.tf
+override.tf.json
+terraform.rc
+
+# Visual Studio Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Azure Function artifacts
+.local.settings.json
+*.zip
+
+# Logs
+*.log
+logs/
+
+# Misc
+*.bak
+*.swp
+*.tmp
+```
+
+---
+
+### 🔐 Notes
+
+* `.env`, `.local.settings.json`, and `*.tfvars` often contain **credentials or secrets** – never commit them.
+* Terraform state files (`*.tfstate`) track real Azure resources – keep them local or use **remote backends** (like Azure Storage).
+* Azure Functions may generate a `.zip` when deployed – ignore that too.
+
+---
+
+You can create this file using:
+
+```bash
+touch .gitignore
+```
+
+Then paste the above content inside.
+
+Let me know if you want me to automatically generate the final repo contents or `.zip` your entire starter template.
