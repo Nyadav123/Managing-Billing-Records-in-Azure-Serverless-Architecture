@@ -1,0 +1,14 @@
+Pseudocode: Retrieve Billing Record (Fallback to Archive)
+
+1. Receive request with record ID
+
+2. First attempt: 
+   - Query Cosmos DB using record ID
+   - If found, return the result
+
+3. If not found:
+   a. Estimate blob path using customer_id and known structure
+   b. Access Azure Blob Storage and download the file (JSON)
+   c. Return the record to the API consumer
+
+4. Optional: Log "archived record retrieved" event
